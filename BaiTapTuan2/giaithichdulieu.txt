@@ -1,0 +1,64 @@
++ Đây là bộ dữ liệu EEG-Biometric tiềm năng gợi lên thính giác
++ Bộ dữ liệu được cung cấp ở định dạng .csv và wfdb
++s XX _ex XX _s XX : s( Số đối tượng )_ex( Số thí nghiệm )_s( Số phiên. Chỉ dành cho ex01 và ex02 ).
+
+Ví dụ: s03_ex02_s01: Đối tượng 03 Thí nghiệm 02 Phiên.
+
+Dữ liệu được cung cấp trong ba thư mục:
+
+Dữ liệu thô: Mỗi bản ghi chứa tập dữ liệu được ghi lại mà không phân đoạn và không lọc.
+Dữ liệu phân đoạn: Mỗi bản ghi chứa hai phút tín hiệu EEG có độ nhiễu thấp nhất có thể, tức là dữ liệu khi đối tượng di chuyển và chớp mắt ít hơn. Dữ liệu được phân đoạn thủ công và vị trí ban đầu và cuối cùng của các điểm cắt được trình bày trong tệp excel đính kèm: data_trim.csv.
+Dữ liệu đã lọc: Mỗi bản ghi chứa hai phút tín hiệu EEG bao gồm dữ liệu phân đoạn sau khi áp dụng bộ lọc Butterworth bậc 1 1-40 Hz và bộ lọc notch 50 Hz với hệ số chất lượng là 30.
+Data_trim.csv: Chứa điểm đầu và điểm cuối nơi Dữ liệu phân đoạn được cắt từ Dữ liệu thô. Các điểm được cung cấp theo giây và mẫu.
+Subjects.csv: Chứa siêu dữ liệu của các chủ đề và câu trả lời của bảng câu hỏi.
+Songs.csv: Chứa các liên kết đến các bài hát được sử dụng trong bản ghi âm
+
++ trong mỗi bản ghi sẽ có 4 kênh là P4, Cz, F8, và T7. Đây là các tên kênh phổ biến trong nghiên cứu EEG (Electroencephalography), với các điện cực được đặt ở các vị trí cụ thể trên đầu để đo hoạt động điện của não.
+
+1. P4 (Parietal 4)
+Vị trí: P4 là một điện cực EEG được đặt ở vùng đỉnh phía phải của vỏ não (parietal lobe).
+Chức năng: Vùng này có liên quan đến các chức năng nhận thức cao, bao gồm cảm giác, sự chú ý, và nhận thức không gian. Tín hiệu từ P4 có thể liên quan đến sự xử lý cảm giác và nhận thức hình ảnh.
+Ứng dụng: Đo hoạt động não liên quan đến các chức năng nhận thức và cảm giác.
+2. Cz (Central)
+Vị trí: Cz là điện cực EEG được đặt tại trung tâm của đầu, gần vùng đỉnh của não (trên vùng trung tâm của vùng vỏ não vận động).
+Chức năng: Vùng này liên quan đến các chức năng vận động và điều khiển cơ thể, đặc biệt là các cử động của cơ thể và sự nhận thức không gian.
+Ứng dụng: Đo hoạt động não liên quan đến các động tác vận động và chức năng vận động cơ thể.
+3. F8 (Frontal 8)
+Vị trí: F8 là một điện cực EEG được đặt ở vùng trán bên phải của vỏ não (frontal lobe).
+Chức năng: Vùng trán có vai trò quan trọng trong các chức năng điều khiển hành vi, ra quyết định, và nhận thức xã hội. Tín hiệu từ F8 có thể giúp theo dõi các hoạt động như sự chú ý, cảm xúc, và quyết định.
+Ứng dụng: Đo hoạt động não liên quan đến việc ra quyết định, cảm xúc, và chức năng hành vi xã hội.
+4. T7 (Temporal 7)
+Vị trí: T7 là một điện cực EEG được đặt ở vùng thái dương trái (temporal lobe), gần phía sau tai.
+Chức năng: Vùng thái dương đóng vai trò quan trọng trong việc xử lý âm thanh và ngôn ngữ. Tín hiệu từ T7 giúp theo dõi hoạt động liên quan đến xử lý thông tin âm thanh và ngữ nghĩa.
+Ứng dụng: Đo hoạt động não liên quan đến sự nhận diện âm thanh, ngôn ngữ, và nhận thức xã hội.
+
++ đồ thị trục ngang là thời gian trục dọc thể hiện biên độ (amplitude) của tín hiệu biểu thị độ mạnh yếu của tín hiệu EEG hoặc tín hiệu sinh lý tại mỗi thời điểm. 
+Đơn vị: Biên độ có thể là đơn vị microvolt (μV) đối với tín hiệu EEG hoặc mili volt (mV) cho các tín hiệu sinh lý khác như ECG hoặc PPG, nhưng trong mã của bạn, đơn vị của trục này không được chỉ định rõ ràng và phụ thuộc vào dữ liệu đầu vào.
+
+Dữ liệu bao gồm 5 cột 
+Dữ liệu bao gồm 5 cột, mỗi cột đại diện cho một thông tin sau:
+
+Cột 1 (Thời gian hoặc chỉ số mẫu):
+
+Đây có thể là chỉ số mốc thời gian (ví dụ: 9000, 9001, 9002,...), hoặc chỉ số mẫu tại các thời điểm khác nhau trong dữ liệu tín hiệu. Cột này có thể là số mốc của dữ liệu (giống như chỉ số của từng mẫu).
+Ví dụ: 9000, 9001, 9002, ...
+Cột 2 - Cột 5 (Các tín hiệu từ các kênh EEG):
+
+Mỗi cột sau cột 1 đại diện cho tín hiệu ghi nhận được từ một kênh EEG khác nhau. Cụ thể:
+Cột 2: Tín hiệu từ kênh P4.
+Cột 3: Tín hiệu từ kênh Cz.
+Cột 4: Tín hiệu từ kênh F8.
+Cột 5: Tín hiệu từ kênh T7.
+Các giá trị trong cột:
+Các giá trị trong mỗi cột từ cột 2 đến cột 5 đại diện cho biên độ tín hiệu tại thời điểm hoặc mẫu tương ứng. Đây là các tín hiệu điện được ghi nhận từ các kênh EEG trên đầu của người tham gia thí nghiệm.
+
+Ví dụ:
+Dòng đầu tiên (9000, 0.36366961603307935, 1.7370143247491736, -4.067891840187775, 0.3816847974272952):
+9000 là chỉ số mẫu.
+Tín hiệu từ kênh P4 tại thời điểm 9000 là 0.36.
+Tín hiệu từ kênh Cz tại thời điểm 9000 là 1.74.
+Tín hiệu từ kênh F8 tại thời điểm 9000 là -4.07.
+Tín hiệu từ kênh T7 tại thời điểm 9000 là 0.38.
+Trục trong đồ thị (nếu bạn vẽ dữ liệu này):
+Trục ngang: Biểu thị chỉ số mẫu hoặc thời gian (mỗi chỉ số như 9000, 9001, ... có thể tương ứng với một khoảng thời gian nhất định nếu biết tần số lấy mẫu).
+Trục dọc: Biểu thị biên độ tín hiệu từ các kênh EEG (tín hiệu điện áp, có thể có đơn vị là microvolt - μV).
